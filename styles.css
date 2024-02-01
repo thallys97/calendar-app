@@ -49,6 +49,13 @@ header h1 {
 /* ...estilos para main, aside... */
 
 /* Estilos do calendário */
+
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* Cria 7 colunas */
+    grid-gap: 5px; /* Espaçamento entre as células */
+}
+
 .calendar-cell {
     background-color: var(--text-light);
     border: 1px solid #ddd;
