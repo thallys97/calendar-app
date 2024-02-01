@@ -44,3 +44,18 @@ function hideEventModal() {
     document.getElementById('event-modal').classList.remove('active');
     document.querySelector('.modal-background').classList.remove('active');
 }
+
+
+// Supondo que você tenha os botões com os IDs 'prev-month' e 'next-month'
+document.getElementById('prev-month').addEventListener('click', () => {
+    // Lógica para ir para o mês anterior
+});
+
+document.getElementById('next-month').addEventListener('click', () => {
+    // Lógica para ir para o próximo mês
+});
+
+// Para o botão de adicionar evento
+document.getElementById('add-event').addEventListener('click', showEventModal);
+document.getElementById('close-modal').addEventListener('click', hideEventModal);
+
