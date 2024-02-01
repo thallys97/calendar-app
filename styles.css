@@ -1,0 +1,20 @@
+/* Estilos básicos e reset */
+body, h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Layout principal */
+header, main, aside, #event-modal {
+    /* Definir estilos de layout aqui */
+}
+
+/* Estilos específicos do calendário */
+#calendar {
+    /* Definir estilos do calendário aqui */
+}
+
+/* Estilos do modal */
+.modal {
+    /* Definir estilos do pop-up aqui */
+}
