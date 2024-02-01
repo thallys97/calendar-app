@@ -8,18 +8,40 @@
 </head>
 <body>
     <header>
-        <!-- Botões e título do calendário -->
+        <button id="prev-month" class="nav-button">❮</button>
+        <h1 id="current-month-year">Março 2024</h1>
+        <button id="next-month" class="nav-button">❯</button>
     </header>
     <main>
         <div id="calendar">
-            <!-- Calendário será gerado aqui -->
+            <!-- Cabeçalho dos dias da semana -->
+            <div class="calendar-header">Dom</div>
+            <div class="calendar-header">Seg</div>
+            <div class="calendar-header">Ter</div>
+            <div class="calendar-header">Qua</div>
+            <div class="calendar-header">Qui</div>
+            <div class="calendar-header">Sex</div>
+            <div class="calendar-header">Sáb</div>
+            <!-- As células do calendário serão geradas aqui pelo JavaScript -->
         </div>
         <aside>
-            <!-- Detalhes do evento e botão de adição -->
+            <h2>Detalhes do Evento</h2>
+            <!-- Conteúdo detalhado do evento aqui -->
+            <button id="add-event" class="action-button">Adicionar Evento</button>
         </aside>
     </main>
     <div id="event-modal" class="modal">
-        <!-- Pop-up para adicionar/editar eventos -->
+        <!-- Conteúdo do pop-up para adicionar/editar eventos -->
+        <div class="modal-header">
+            Adicionar um novo evento
+            <button id="close-modal" class="close-button">X</button>
+        </div>
+        <form id="event-form">
+            <!-- Campos do formulário -->
+            <input type="text" id="event-title" placeholder="Título do Evento" required>
+            <!-- Outros campos do formulário -->
+            <button type="submit" class="submit-button">Salvar Evento</button>
+        </form>
     </div>
     <script src="script.js"></script>
 </body>
