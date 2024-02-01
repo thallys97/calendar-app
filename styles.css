@@ -1,20 +1,105 @@
 /* Estilos básicos e reset */
-body, h1, h2, h3, p {
+/* Estilos principais e reset */
+body, h1, h2, h3, p, button, input, div {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
 }
 
 /* Layout principal */
-header, main, aside, #event-modal {
-    /* Definir estilos de layout aqui */
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 24px;
 }
 
-/* Estilos específicos do calendário */
+main {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
 #calendar {
-    /* Definir estilos do calendário aqui */
+    width: 70%;
 }
 
-/* Estilos do modal */
+aside {
+    width: 25%;
+    background-color: #f3f3f3;
+    padding: 20px;
+}
+
+/* Estilos do calendário */
+.calendar-cell {
+    border: 1px solid #ddd;
+    min-height: 80px;
+    text-align: right;
+    padding: 5px;
+}
+
+.calendar-header {
+    background-color: #333;
+    color: white;
+}
+
+/* Estilos do pop-up */
 .modal {
-    /* Definir estilos do pop-up aqui */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+    z-index: 1000;
+    display: none; /* Escondido por padrão */
+}
+
+.modal.active {
+    display: block; /* Mostrar quando ativo */
+}
+
+.modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none; /* Escondido por padrão */
+}
+
+.modal-background.active {
+    display: block; /* Mostrar quando ativo */
+}
+
+/* Botões e campos de formulário */
+button {
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+input, select {
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+
+    #calendar, aside {
+        width: 100%;
+    }
 }
