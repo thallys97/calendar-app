@@ -48,9 +48,17 @@ header h1 {
 
 /* ...estilos para main, aside... */
 
+main {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
 /* Estilos do calendário */
 
 #calendar {
+    width: 75%;
     display: grid;
     grid-template-columns: repeat(7, 1fr); /* Cria 7 colunas */
     grid-gap: 5px; /* Espaçamento entre as células */
@@ -71,6 +79,14 @@ header h1 {
     font-size: 1em;
 }
 
+/* aside */
+
+aside {
+    width: 25%;
+}
+
+
+
 /* Estilização do Pop-up de Eventos */
 .modal {
     /* ... */
@@ -88,5 +104,12 @@ header h1 {
 
 /* Responsividade */
 @media (max-width: 768px) {
-    /* ...ajustes para responsividade... */
+    main {
+        flex-direction: column;
+    }
+
+    #calendar,
+    aside {
+        width: 100%;
+    }
 }
