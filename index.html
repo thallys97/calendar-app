@@ -34,18 +34,22 @@
         </main>
     </div>
     <div id="event-modal" class="modal">
-        <!-- Conteúdo do pop-up para adicionar/editar eventos -->
         <div class="modal-header">
             Adicionar um novo evento
             <button id="close-modal" class="close-button">X</button>
         </div>
         <form id="event-form">
-            <!-- Campos do formulário -->
             <input type="text" id="event-title" placeholder="Título do Evento" required>
-            <!-- Outros campos do formulário -->
+            <input type="date" id="event-start-date" placeholder="Data de Início" required>
+            <input type="date" id="event-end-date" placeholder="Data de Término" required>
+            <input type="time" id="event-start-time" placeholder="Horário de Início">
+            <input type="time" id="event-end-time" placeholder="Horário de Término">
+            <input type="text" id="event-location" placeholder="Local">
+            <textarea id="event-description" placeholder="Descrição"></textarea>
             <button type="submit" class="submit-button">Salvar Evento</button>
         </form>
     </div>
+    
 
     <!-- Fundo do modal -->
     <div class="modal-background"></div>
