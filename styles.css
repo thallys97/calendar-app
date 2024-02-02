@@ -113,6 +113,36 @@ aside {
 }
 
 /* Botões e campos de formulário */
+
+/* Estilização dos campos de formulário no modal */
+
+#event-form input[type="text"],
+#event-form input[type="date"],
+#event-form input[type="time"],
+#event-form textarea {
+    width: calc(100% - 20px); /* Subtrai o padding dos lados */
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+}
+
+#event-form textarea {
+    height: 100px; /* Altura fixa para a área de texto */
+}
+
+/* Botão de fechar e enviar no modal */
+#close-modal {
+    /* Estilos para o botão de fechar */
+}
+
+#event-form .submit-button {
+    /* Estilos para o botão de enviar */
+}
+
+
+
+
+
 /* ... */
 
 /* Responsividade */
