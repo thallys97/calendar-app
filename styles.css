@@ -56,17 +56,34 @@ header h1 {
 
 /* ...estilos para main, aside... */
 
-main {
+
+/* Estilos do calendário */
+
+.calendar-content {
     display: flex;
-    justify-content: space-between;
+    
+}
+
+.calendar {
+
+    width: 75%;
+
+}
+
+.calendar-week {
+    display: flex;
+    padding-inline-start: 0;
+    
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* Cria 7 colunas */
+    grid-gap: 5px; /* Espaçamento entre as células */
 }
 
 
 
-/* Estilos do calendário */
-
-#calendar {
-    width: 75%;
+#calendar-days {
+    
     display: grid;
     grid-template-columns: repeat(7, 1fr); /* Cria 7 colunas */
     grid-gap: 5px; /* Espaçamento entre as células */
@@ -86,6 +103,15 @@ main {
     text-align: center;
     font-size: 1em;
 }
+
+
+
+/* Estilo para os dias do mês anterior */
+.previous-month {
+    color: #ccc; /* Cinza claro */
+}
+
+
 
 /* aside */
 
