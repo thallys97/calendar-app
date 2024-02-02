@@ -15,22 +15,30 @@
             <button id="next-month" class="nav-button">❯</button>
         </header>
         <main>
-            <div id="calendar">
-                <!-- Cabeçalho dos dias da semana -->
-                <div class="calendar-header">Dom</div>
-                <div class="calendar-header">Seg</div>
-                <div class="calendar-header">Ter</div>
-                <div class="calendar-header">Qua</div>
-                <div class="calendar-header">Qui</div>
-                <div class="calendar-header">Sex</div>
-                <div class="calendar-header">Sáb</div>
-                <!-- As células do calendário serão geradas aqui pelo JavaScript -->
-            </div>
-            <aside>
-                <h2>Detalhes do Evento</h2>
-                <!-- Conteúdo detalhado do evento aqui -->
-                <button id="add-event" class="action-button">Adicionar Evento</button>
-            </aside>
+            <!-- Cabeçalho dos dias da semana -->
+            
+            <div class="calendar-content">
+                
+                <div class="calendar">
+                    <ul class="calendar-week">
+                        <li class="calendar-header">Dom</li>
+                        <li class="calendar-header">Seg</li>
+                        <li class="calendar-header">Ter</li>
+                        <li class="calendar-header">Qua</li>
+                        <li class="calendar-header">Qui</li>
+                        <li class="calendar-header">Sex</li>
+                        <li class="calendar-header">Sáb</li>
+                    </ul> 
+                        
+                    <div id="calendar-days">    
+                        <!-- As células do calendário serão geradas aqui pelo JavaScript -->
+                    </div>
+                </div>
+                <aside>
+                    <h2>Detalhes do Evento</h2>
+                    <!-- Conteúdo detalhado do evento aqui -->
+                    <button id="add-event" class="action-button">Adicionar Evento</button>
+                </aside>
         </main>
     </div>
     <div id="event-modal" class="modal">
