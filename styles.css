@@ -17,6 +17,14 @@ body {
 
 /* ...outros estilos básicos... */
 
+
+.container {
+    padding: 0 20px; /* Adiciona um espaçamento de 20px nas laterais */
+    max-width: 1200px; /* Define uma largura máxima se desejar */
+    margin: 0 auto; /* Centraliza o main se houver uma largura máxima definida */
+}
+
+
 /* Layout principal */
 header {
     background-color: var(--primary-color);
