@@ -85,6 +85,19 @@ function hideEventModal() {
    });
 }
 
+
+// Adicione o listener para todas as células do calendário após elas serem geradas
+function handleCalendarCellClick () {
+    document.querySelectorAll('.calendar-cell').forEach(cell => {
+        cell.addEventListener('click', function() {
+            flashCell(this);
+            updateAside(this);
+            prepareAddEventButton(this);
+        });
+    });       
+}
+
+
 // Função para gerar o calendário
 function generateCalendar(month, year) {
     const calendarContainer = document.getElementById('calendar-days');
@@ -106,15 +119,26 @@ function generateCalendar(month, year) {
     //     calendarContainer.appendChild(emptyCell);
     // }
 
+
+    const weekDays = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+
     // Adiciona células em cinza para os dias do mês anterior
     for (let i = daysInPreviousMonth - firstDayOfMonth; i < daysInPreviousMonth; i++) {
         const dayCell = document.createElement('div');
         dayCell.classList.add('calendar-cell', 'previous-month');
-        dayCell.textContent = i + 1; // Isso irá adicionar os últimos dias do mês anterior
+        const dayNumber = i + 1; // Dia do mês anterior
+    
+        // Calcula o dia da semana para o dia do mês anterior
+        const previousMonthDate = new Date(year, month - 1, dayNumber);
+        const dayOfWeek = weekDays[previousMonthDate.getDay()];
+    
+        dayCell.textContent = dayNumber;
+        dayCell.setAttribute('data-date', previousMonthDate.toISOString().split('T')[0]);
+        dayCell.setAttribute('data-day-of-week', dayOfWeek);
+    
         calendarContainer.appendChild(dayCell);
     }
 
-    const weekDays = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
 
     // Criar células do calendário para cada dia do mês
     for (let day = 1; day <= daysInMonth; day++) {
@@ -162,6 +186,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         generateCalendar(currentMonth, currentYear);
         updateReturnToCurrentMonthButton(); // Atualize o botão após a navegação
+        handleCalendarCellClick();
     });
 
     // Event listener para o botão "Voltar para o mês atual"
@@ -170,17 +195,10 @@ document.addEventListener('DOMContentLoaded', function () {
         currentYear = new Date().getFullYear();
         generateCalendar(currentMonth, currentYear);
         updateReturnToCurrentMonthButton();
+        handleCalendarCellClick();
     });
-
-
-    // Adicione o listener para todas as células do calendário após elas serem geradas
-    document.querySelectorAll('.calendar-cell').forEach(cell => {
-        cell.addEventListener('click', function() {
-            flashCell(this);
-            updateAside(this);
-            prepareAddEventButton(this);
-        });
-    });
+    
+    handleCalendarCellClick();
 
     hideEventModal();
 
