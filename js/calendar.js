@@ -22,6 +22,17 @@ function getDaysInPreviousMonth(month, year) {
     return new Date(year, month, 0).getDate();
 }
 
+// Função para atualizar o estado do botão de retorno ao mês atual
+function updateReturnToCurrentMonthButton() {
+    const returnButton = document.getElementById('return-to-current-month');
+    if (currentMonth === new Date().getMonth() && currentYear === new Date().getFullYear()) {
+        returnButton.style.display = 'none';
+    } else {
+        returnButton.style.display = 'block';
+    }
+}
+
+
 // Função para gerar o calendário
 function generateCalendar(month, year) {
     const calendarContainer = document.getElementById('calendar-days');
@@ -82,6 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
             currentMonth--;
         }
         generateCalendar(currentMonth, currentYear);
+        updateReturnToCurrentMonthButton(); // Atualize o botão após a navegação
     });
 
     document.getElementById('next-month').addEventListener('click', () => {
@@ -92,6 +104,15 @@ document.addEventListener('DOMContentLoaded', function () {
             currentMonth++;
         }
         generateCalendar(currentMonth, currentYear);
+        updateReturnToCurrentMonthButton(); // Atualize o botão após a navegação
+    });
+
+    // Event listener para o botão "Voltar para o mês atual"
+    document.getElementById('return-to-current-month').addEventListener('click', () => {
+        currentMonth = new Date().getMonth();
+        currentYear = new Date().getFullYear();
+        generateCalendar(currentMonth, currentYear);
+        updateReturnToCurrentMonthButton();
     });
 
     // // Event listeners para adicionar e fechar o modal de eventos
