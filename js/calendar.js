@@ -11,16 +11,17 @@ function getCurrentDate() {
     return `${year}-${month}-${day}`;
 }
 
+// Função para obter o número de dias do mês anterior
+function getDaysInPreviousMonth(month, year) {
+    return new Date(year, month, 0).getDate();
+}
+
 // Função para gerar o cabeçalho do calendário com o mês e o ano corretos
 function updateCalendarHeader() {
     const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
     document.getElementById('current-month-year').textContent = `${monthNames[currentMonth]} ${currentYear}`;
 }
 
-// Função para obter o número de dias do mês anterior
-function getDaysInPreviousMonth(month, year) {
-    return new Date(year, month, 0).getDate();
-}
 
 // Função para atualizar o estado do botão de retorno ao mês atual
 function updateReturnToCurrentMonthButton() {
@@ -29,54 +30,6 @@ function updateReturnToCurrentMonthButton() {
         returnButton.style.display = 'none';
     } else {
         returnButton.style.display = 'block';
-    }
-}
-
-
-// Função para gerar o calendário
-function generateCalendar(month, year) {
-    const calendarContainer = document.getElementById('calendar-days');
-    calendarContainer.innerHTML = ''; // Limpar o calendário existente
-
-    // Atualizar o cabeçalho do calendário
-    updateCalendarHeader();
-
-    const firstDayOfMonth = new Date(year, month, 1).getDay();
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-    const daysInPreviousMonth = getDaysInPreviousMonth(month, year);
-    const lastDayOfPreviousMonth = new Date(year, month, 0).getDay();
-
-    // // Adiciona células vazias para os dias do mês anterior
-    // for (let i = 0; i < firstDayOfMonth; i++) {
-    //     const emptyCell = document.createElement('div');
-    //     emptyCell.classList.add('calendar-cell');
-    //     calendarContainer.appendChild(emptyCell);
-    // }
-
-    // Adiciona células em cinza para os dias do mês anterior
-    for (let i = daysInPreviousMonth - firstDayOfMonth; i < daysInPreviousMonth; i++) {
-        const dayCell = document.createElement('div');
-        dayCell.classList.add('calendar-cell', 'previous-month');
-        dayCell.textContent = i + 1; // Isso irá adicionar os últimos dias do mês anterior
-        calendarContainer.appendChild(dayCell);
-    }
-
-
-    // Criar células do calendário para cada dia do mês
-    for (let day = 1; day <= daysInMonth; day++) {
-        const dayCell = document.createElement('div');
-        dayCell.classList.add('calendar-cell');
-
-        // Verifique se a célula representa o dia atual
-        if (getCurrentDate() === `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`) {
-            dayCell.classList.add('current-day');
-        }
-
-        const date = new Date(year, month, day);
-        dayCell.setAttribute('data-date', date.toISOString().split('T')[0]);
-        dayCell.textContent = day;
-        calendarContainer.appendChild(dayCell);
     }
 }
 
@@ -132,6 +85,52 @@ function hideEventModal() {
    });
 }
 
+// Função para gerar o calendário
+function generateCalendar(month, year) {
+    const calendarContainer = document.getElementById('calendar-days');
+    calendarContainer.innerHTML = ''; // Limpar o calendário existente
+
+    // Atualizar o cabeçalho do calendário
+    updateCalendarHeader();
+
+    const firstDayOfMonth = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    const daysInPreviousMonth = getDaysInPreviousMonth(month, year);
+    const lastDayOfPreviousMonth = new Date(year, month, 0).getDay();
+
+    // // Adiciona células vazias para os dias do mês anterior
+    // for (let i = 0; i < firstDayOfMonth; i++) {
+    //     const emptyCell = document.createElement('div');
+    //     emptyCell.classList.add('calendar-cell');
+    //     calendarContainer.appendChild(emptyCell);
+    // }
+
+    // Adiciona células em cinza para os dias do mês anterior
+    for (let i = daysInPreviousMonth - firstDayOfMonth; i < daysInPreviousMonth; i++) {
+        const dayCell = document.createElement('div');
+        dayCell.classList.add('calendar-cell', 'previous-month');
+        dayCell.textContent = i + 1; // Isso irá adicionar os últimos dias do mês anterior
+        calendarContainer.appendChild(dayCell);
+    }
+
+
+    // Criar células do calendário para cada dia do mês
+    for (let day = 1; day <= daysInMonth; day++) {
+        const dayCell = document.createElement('div');
+        dayCell.classList.add('calendar-cell');
+
+        // Verifique se a célula representa o dia atual
+        if (getCurrentDate() === `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`) {
+            dayCell.classList.add('current-day');
+        }
+
+        const date = new Date(year, month, day);
+        dayCell.setAttribute('data-date', date.toISOString().split('T')[0]);
+        dayCell.textContent = day;
+        calendarContainer.appendChild(dayCell);
+    }
+}
 
 
 
