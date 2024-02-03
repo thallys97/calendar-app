@@ -2,6 +2,15 @@
 let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
 
+// Função para obter a data atual no formato "aaaa-mm-dd"
+function getCurrentDate() {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+    const day = currentDate.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
 // Função para gerar o cabeçalho do calendário com o mês e o ano corretos
 function updateCalendarHeader() {
     const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
@@ -47,6 +56,12 @@ function generateCalendar(month, year) {
     for (let day = 1; day <= daysInMonth; day++) {
         const dayCell = document.createElement('div');
         dayCell.classList.add('calendar-cell');
+
+        // Verifique se a célula representa o dia atual
+        if (getCurrentDate() === `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`) {
+            dayCell.classList.add('current-day');
+        }
+
         const date = new Date(year, month, day);
         dayCell.setAttribute('data-date', date.toISOString().split('T')[0]);
         dayCell.textContent = day;
