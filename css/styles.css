@@ -183,11 +183,13 @@ aside {
     color: var(--text-light);
     cursor: pointer;
     font-size: 1.2em;
+    color: red;
+    text-align: end;
+    width: 100%;
+    
 }
 
-.close-button:hover {
-    color: red; /* Cor do botão de fechamento ao passar o mouse */
-}
+
 
 /* Botões e campos de formulário */
 
