@@ -175,6 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         generateCalendar(currentMonth, currentYear);
         updateReturnToCurrentMonthButton(); // Atualize o botão após a navegação
+        handleCalendarCellClick();
     });
 
     document.getElementById('next-month').addEventListener('click', () => {
