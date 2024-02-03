@@ -46,8 +46,9 @@ function flashCell(cell) {
 function updateAside(cell) {
     const dayOfWeek = cell.getAttribute('data-day-of-week');
     const dayNumber = cell.textContent;
+    const monthName = cell.getAttribute('data-month');
     const asideContent = document.querySelector('aside');
-    asideContent.querySelector('h2').textContent = `${dayOfWeek}, ${dayNumber}`;
+    asideContent.querySelector('h2').textContent = `${dayOfWeek}, ${dayNumber} de ${monthName}`;
 }
 
 // Função para preparar o botão de adicionar evento
@@ -121,7 +122,8 @@ function generateCalendar(month, year) {
 
 
     const weekDays = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
-
+    const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+   
     // Adiciona células em cinza para os dias do mês anterior
     for (let i = daysInPreviousMonth - firstDayOfMonth; i < daysInPreviousMonth; i++) {
         const dayCell = document.createElement('div');
@@ -135,6 +137,7 @@ function generateCalendar(month, year) {
         dayCell.textContent = dayNumber;
         dayCell.setAttribute('data-date', previousMonthDate.toISOString().split('T')[0]);
         dayCell.setAttribute('data-day-of-week', dayOfWeek);
+        dayCell.setAttribute('data-month', monthNames[month]); // Atribuir o nome do mês à célula
     
         calendarContainer.appendChild(dayCell);
     }
@@ -154,6 +157,7 @@ function generateCalendar(month, year) {
         const dayOfWeek = weekDays[date.getDay()]; // Obtém o dia da semana
         dayCell.setAttribute('data-date', date.toISOString().split('T')[0]);
         dayCell.setAttribute('data-day-of-week', dayOfWeek); // Define o dia da semana
+        dayCell.setAttribute('data-month', monthNames[month]); // Atribuir o nome do mês à célula
         dayCell.textContent = day;
         calendarContainer.appendChild(dayCell);
     }
