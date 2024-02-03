@@ -5,6 +5,7 @@
     --highlight-color: #3498db; /* cor para destacar o dia atual ou eventos selecionados */
     --text-color: #333; /* cor do texto padrão */
     --text-light: #fff; /* cor do texto claro */
+    --event-color: #f1c40f; /* cor do evento */
 }
 
 body {
@@ -94,6 +95,11 @@ header h1 {
     border: 1px solid #ddd;
     min-height: 100px;
     padding: 5px;
+    transition: background-color 0.3s; /* Adiciona uma transição suave para o background-color */
+}
+
+.calendar-cell.flash {
+    background-color: var(--event-color);
 }
 
 .calendar-header {
