@@ -104,6 +104,11 @@ header h1 {
     font-size: 1em;
 }
 
+/* Estilo para o dia atual */
+.current-day {
+    background-color: var(--highlight-color); /* Cor cor para destacar o dia atual */
+    color: var(--text-light); /* Cor do texto claro */
+}
 
 
 /* Estilo para os dias do mês anterior */
