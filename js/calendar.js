@@ -80,6 +80,61 @@ function generateCalendar(month, year) {
     }
 }
 
+
+// Função para fazer a célula piscar
+function flashCell(cell) {
+    cell.classList.add('flash');
+    setTimeout(() => {
+        cell.classList.remove('flash');
+    }, 300); // Este número deve coincidir com a duração da transição definida no CSS
+}
+
+// Função para atualizar a barra lateral com o dia da semana e o número do dia
+function updateAside(cell) {
+    const dayOfWeek = cell.getAttribute('data-day-of-week');
+    const dayNumber = cell.textContent;
+    const asideContent = document.querySelector('aside');
+    asideContent.querySelector('h2').textContent = `${dayOfWeek}, ${dayNumber}`;
+}
+
+// Função para preparar o botão de adicionar evento
+function prepareAddEventButton(cell) {
+    const date = cell.getAttribute('data-date');
+    const addButton = document.getElementById('add-event');
+    addButton.onclick = function() {
+        // Aqui você definiria a lógica para abrir o modal e preencher a data do evento
+        showEventModal();
+        document.getElementById('event-start-date').value = date;
+        document.getElementById('event-end-date').value = date;
+    };
+}
+
+// Função para mostrar o modal de eventos
+function showEventModal() {
+    const modal = document.getElementById('event-modal');
+    const modalBackground = document.querySelector('.modal-background');
+    modal.style.display = "block";
+    modalBackground.style.display = "block";
+}
+
+function hideEventModal() {
+
+    const closeModalButton = document.getElementById("close-modal");
+
+    const modal = document.getElementById('event-modal');
+    const modalBackground = document.querySelector('.modal-background');
+
+    closeModalButton.addEventListener("click", function () {
+
+        modal.style.display = "none";
+        modalBackground.style.display = "none";
+
+   });
+}
+
+
+
+
 // Adiciona event listeners uma vez que o DOM esteja completamente carregado
 document.addEventListener('DOMContentLoaded', function () {
     generateCalendar(currentMonth, currentYear);
@@ -115,21 +170,21 @@ document.addEventListener('DOMContentLoaded', function () {
         updateReturnToCurrentMonthButton();
     });
 
-    // // Event listeners para adicionar e fechar o modal de eventos
-    // document.getElementById('add-event').addEventListener('click', showEventModal);
-    // document.getElementById('close-modal').addEventListener('click', hideEventModal);
+
+    // Adicione o listener para todas as células do calendário após elas serem geradas
+    document.querySelectorAll('.calendar-cell').forEach(cell => {
+        cell.addEventListener('click', function() {
+            flashCell(this);
+            updateAside(this);
+            prepareAddEventButton(this);
+        });
+    });
+
+    hideEventModal();
+
 });
 
-// // Funções para mostrar e esconder o pop-up
-// function showEventModal() {
-//     document.getElementById('event-modal').classList.add('active');
-//     document.querySelector('.modal-background').classList.add('active');
-// }
 
-// function hideEventModal() {
-//     document.getElementById('event-modal').classList.remove('active');
-//     document.querySelector('.modal-background').classList.remove('active');
-// }
 
 
 
