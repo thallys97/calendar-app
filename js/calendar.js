@@ -114,6 +114,7 @@ function generateCalendar(month, year) {
         calendarContainer.appendChild(dayCell);
     }
 
+    const weekDays = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
 
     // Criar células do calendário para cada dia do mês
     for (let day = 1; day <= daysInMonth; day++) {
@@ -126,7 +127,9 @@ function generateCalendar(month, year) {
         }
 
         const date = new Date(year, month, day);
+        const dayOfWeek = weekDays[date.getDay()]; // Obtém o dia da semana
         dayCell.setAttribute('data-date', date.toISOString().split('T')[0]);
+        dayCell.setAttribute('data-day-of-week', dayOfWeek); // Define o dia da semana
         dayCell.textContent = day;
         calendarContainer.appendChild(dayCell);
     }
