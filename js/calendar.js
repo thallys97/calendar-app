@@ -2,6 +2,11 @@
 let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
 
+
+const weekDays = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+
+
 // Função para obter a data atual no formato "aaaa-mm-dd"
 function getCurrentDate() {
     const currentDate = new Date();
@@ -121,9 +126,7 @@ function generateCalendar(month, year) {
     // }
 
 
-    const weekDays = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
-    const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-   
+       
     // Adiciona células em cinza para os dias do mês anterior
     for (let i = daysInPreviousMonth - firstDayOfMonth; i < daysInPreviousMonth; i++) {
         const dayCell = document.createElement('div');
