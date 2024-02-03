@@ -47,6 +47,8 @@ function generateCalendar(month, year) {
     for (let day = 1; day <= daysInMonth; day++) {
         const dayCell = document.createElement('div');
         dayCell.classList.add('calendar-cell');
+        const date = new Date(year, month, day);
+        dayCell.setAttribute('data-date', date.toISOString().split('T')[0]);
         dayCell.textContent = day;
         calendarContainer.appendChild(dayCell);
     }
@@ -77,21 +79,21 @@ document.addEventListener('DOMContentLoaded', function () {
         generateCalendar(currentMonth, currentYear);
     });
 
-    // Event listeners para adicionar e fechar o modal de eventos
-    document.getElementById('add-event').addEventListener('click', showEventModal);
-    document.getElementById('close-modal').addEventListener('click', hideEventModal);
+    // // Event listeners para adicionar e fechar o modal de eventos
+    // document.getElementById('add-event').addEventListener('click', showEventModal);
+    // document.getElementById('close-modal').addEventListener('click', hideEventModal);
 });
 
-// Funções para mostrar e esconder o pop-up
-function showEventModal() {
-    document.getElementById('event-modal').classList.add('active');
-    document.querySelector('.modal-background').classList.add('active');
-}
+// // Funções para mostrar e esconder o pop-up
+// function showEventModal() {
+//     document.getElementById('event-modal').classList.add('active');
+//     document.querySelector('.modal-background').classList.add('active');
+// }
 
-function hideEventModal() {
-    document.getElementById('event-modal').classList.remove('active');
-    document.querySelector('.modal-background').classList.remove('active');
-}
+// function hideEventModal() {
+//     document.getElementById('event-modal').classList.remove('active');
+//     document.querySelector('.modal-background').classList.remove('active');
+// }
 
 
 
