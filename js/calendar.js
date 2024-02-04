@@ -96,9 +96,12 @@ function hideEventModal() {
 function handleCalendarCellClick () {
     document.querySelectorAll('.calendar-cell').forEach(cell => {
         cell.addEventListener('click', function() {
-            flashCell(this);
-            updateAside(this);
-            prepareAddEventButton(this);
+            // Verifica se a célula clicada representa um dia do mês anterior
+            if (!this.classList.contains('previous-month')) {
+                flashCell(this);
+                updateAside(this);
+                prepareAddEventButton(this);
+            }
         });
     });       
 }
