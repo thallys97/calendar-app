@@ -52,9 +52,12 @@ function updateAside(cell) {
     const dayOfWeek = cell.getAttribute('data-day-of-week');
     const dayNumber = cell.textContent;
     const monthName = cell.getAttribute('data-month');
+    const fullDate = cell.getAttribute('data-date');
+    const year = fullDate.split('-')[0]; // Extrai o ano da data completa
     const asideContent = document.querySelector('aside');
-    asideContent.querySelector('h2').textContent = `${dayOfWeek}, ${dayNumber} de ${monthName}`;
+    asideContent.querySelector('h2').textContent = `${dayOfWeek}, ${dayNumber} de ${monthName} de ${year}`;
 }
+
 
 // Função para preparar o botão de adicionar evento
 function prepareAddEventButton(cell) {
