@@ -56,6 +56,9 @@ function updateAside(cell) {
     const year = fullDate.split('-')[0]; // Extrai o ano da data completa
     const asideContent = document.querySelector('aside');
     asideContent.querySelector('h2').textContent = `${dayOfWeek}, ${dayNumber} de ${monthName} de ${year}`;
+
+     
+
 }
 
 
@@ -66,8 +69,8 @@ function prepareAddEventButton(cell) {
     addButton.onclick = function() {
         // Aqui você definiria a lógica para abrir o modal e preencher a data do evento
         showEventModal();
-        document.getElementById('event-start-date').value = date;
-        document.getElementById('event-end-date').value = date;
+        // document.getElementById('event-start-date').value = date;
+        // document.getElementById('event-end-date').value = date;
     };
 }
 
@@ -101,6 +104,7 @@ function handleCalendarCellClick () {
         cell.addEventListener('click', function() {
             // Verifica se a célula clicada representa um dia do mês anterior
             if (!this.classList.contains('previous-month')) {
+                selectedDate = this.getAttribute('data-date');
                 flashCell(this);
                 updateAside(this);
                 prepareAddEventButton(this);
@@ -145,7 +149,7 @@ function generateCalendar(month, year) {
     
         dayCell.textContent = dayNumber;
         dayCell.setAttribute('data-date', previousMonthDate.toISOString().split('T')[0]);
-        dayCell.setAttribute('data-day-of-week', dayOfWeek);
+        dayCell.setAttribute('data-day-of-week', dayOfWeek);  // Define o dia da semana
         dayCell.setAttribute('data-month', monthNames[month]); // Atribuir o nome do mês à célula
     
         calendarContainer.appendChild(dayCell);
