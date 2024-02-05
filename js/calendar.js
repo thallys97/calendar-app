@@ -48,18 +48,49 @@ function flashCell(cell) {
 }
 
 // Função para atualizar a barra lateral com o dia da semana e o número do dia
-function updateAside(cell) {
+function updateAside(cell, eventsForDate) {
+    const date = cell.getAttribute('data-date');
     const dayOfWeek = cell.getAttribute('data-day-of-week');
     const dayNumber = cell.textContent;
     const monthName = cell.getAttribute('data-month');
-    const fullDate = cell.getAttribute('data-date');
-    const year = fullDate.split('-')[0]; // Extrai o ano da data completa
+    const year = date.split('-')[0]; // Extrai o ano da data completa
     const asideContent = document.querySelector('aside');
-    asideContent.querySelector('h2').textContent = `${dayOfWeek}, ${dayNumber} de ${monthName} de ${year}`;
 
-     
+    // Carregar eventos do localStorage
+    loadEventsFromLocal(); // Isso irá atualizar a variável global 'events'
+
+     // Filtrar eventos para a data clicada
+    
+     const filteredEvents = eventsForDate.filter(event => event.date === date);
+
+    // Ordenar eventos (eventos sem startTime no topo)
+    filteredEvents.sort((a, b) => {
+        if (!a.startTime) return -1;
+        if (!b.startTime) return 1;
+        return a.startTime.localeCompare(b.startTime); // Ordenar por startTime
+    });
+
+    
+    // Limpar o conteúdo existente no aside e adicionar o título
+    asideContent.innerHTML = `
+    
+    <h2>${dayOfWeek}, ${dayNumber} de ${monthName} de ${year}</h2> 
+    
+    <button id="add-event" class="action-button">Adicionar Evento</button> 
+    
+    
+    `;
+
+    // Adicionar eventos ao aside
+    filteredEvents.forEach(event => {
+        const eventDiv = document.createElement('div');
+        eventDiv.classList.add('event');
+        eventDiv.textContent = `${event.title} - ${event.startTime || 'Sem Horário Definido'}`;
+        asideContent.appendChild(eventDiv);
+    });
 
 }
+
 
 
 // Função para preparar o botão de adicionar evento
@@ -106,7 +137,8 @@ function handleCalendarCellClick () {
             if (!this.classList.contains('previous-month')) {
                 selectedDate = this.getAttribute('data-date');
                 flashCell(this);
-                updateAside(this);
+                const events = loadEventsFromLocal(); // Carrega eventos
+                updateAside(this, events); // Passa os eventos carregados para updateAside
                 prepareAddEventButton(this);
             }
         });
