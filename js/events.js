@@ -58,9 +58,11 @@ function loadEventsFromLocal() {
     const storedEvents = localStorage.getItem('events');
     if (storedEvents) {
         events = JSON.parse(storedEvents);
-        // Aqui você pode adicionar lógica para atualizar o calendário com os eventos carregados
+        return events;
     }
+    return [];
 }
+
 
 // Adiciona o event listener ao formulário de evento
 document.getElementById('event-form').addEventListener('submit', function(event) {
