@@ -73,6 +73,8 @@ function updateAside(cell, eventsForDate) {
     
     // Limpar o conteúdo existente no aside e adicionar o título
     asideContent.innerHTML = `
+
+    <button id="return-to-current-month" class="action-button" style="display: none;">Voltar para o mês atual</button>
     
     <h2>${dayOfWeek}, ${dayNumber} de ${monthName} de ${year}</h2> 
     
@@ -87,6 +89,17 @@ function updateAside(cell, eventsForDate) {
         eventDiv.classList.add('event');
         eventDiv.textContent = `${event.title} - ${event.startTime || 'Sem Horário Definido'}`;
         asideContent.appendChild(eventDiv);
+    });
+
+    updateReturnToCurrentMonthButton()
+
+    // Event listener para o botão "Voltar para o mês atual"
+    document.getElementById('return-to-current-month').addEventListener('click', () => {
+        currentMonth = new Date().getMonth();
+        currentYear = new Date().getFullYear();
+        generateCalendar(currentMonth, currentYear);
+        updateReturnToCurrentMonthButton();
+        handleCalendarCellClick();
     });
 
 }
@@ -142,7 +155,9 @@ function handleCalendarCellClick () {
                 prepareAddEventButton(this);
             }
         });
-    });       
+    }); 
+    
+    
 }
 
 
