@@ -59,7 +59,7 @@ function deleteEvent(eventId, cell) {
     // Salva os eventos atualizados no localStorage
     saveEventsToLocal(events);
 
-
+    
     updateCalendarCells();
 
     // Atualiza o aside para refletir a remoção do evento
@@ -93,20 +93,36 @@ function loadEventsFromLocal() {
 document.getElementById('event-form').addEventListener('submit', function(event) {
     event.preventDefault(); // Impedir o envio do formulário
 
-      // Captura os valores do formulário
-      const title = document.getElementById('event-title').value;
-      const eventType = document.getElementById('event-type').value;
-      const startTime = document.getElementById('event-start-time').value;
-      const endTime = document.getElementById('event-end-time').value;
-      const location = document.getElementById('event-location').value;
-      const description = document.getElementById('event-description').value;
-  
-      // Chama a função addEvent
-      addEvent(selectedDate, title, eventType, startTime, endTime, location, description);
-  
-      event.target.reset();
+    // Captura os valores do formulário
+    const title = document.getElementById('event-title').value;
+    const eventType = document.getElementById('event-type').value;
+    const startTime = document.getElementById('event-start-time').value;
+    const endTime = document.getElementById('event-end-time').value;
+    const location = document.getElementById('event-location').value;
+    const description = document.getElementById('event-description').value;
 
+    // Verifica se o horário de início é fornecido
+    if (!startTime) {
+        alert("Por favor, forneça um horário de início para o evento.");
+        return;
+    }
+
+    // Verifica se o horário de término é maior que o horário de início
+    if (endTime && (endTime <= startTime)) {
+        alert("O horário de término deve ser maior que o horário de início.");
+        return;
+    }
+
+    // Se tudo estiver correto, adiciona o evento
+    addEvent(selectedDate, title, eventType, startTime, endTime, location, description);
+
+    // Reseta o formulário após a adição
+    event.target.reset();
+
+    // Atualiza a exibição de eventos
+    updateCalendarCells();
 });
+
 
 // Chama loadEventsFromLocal quando a página carregar para mostrar os eventos armazenados
 window.onload = loadEventsFromLocal;
