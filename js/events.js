@@ -22,28 +22,28 @@ function addEvent(date, title, eventType, startTime, endTime, location, descript
     // Salva os eventos atualizados no localStorage
     saveEventsToLocal(events);
 
-    updateCalendarCells();
-
-     // Fecha o modal
+    
+    // Fecha o modal
     const modal = document.getElementById('event-modal');
     const modalBackground = document.querySelector('.modal-background');   
- 
-     modal.style.display = "none";
-     modalBackground.style.display = "none";
- 
-     // Encontra a célula correspondente à selectedDate
+    
+    modal.style.display = "none";
+    modalBackground.style.display = "none";
+    
+    // Encontra a célula correspondente à selectedDate
     const cell = document.querySelector(`.calendar-cell[data-date="${date}"]`);
-
+    
     // Chama loadEventsFromLocal para atualizar a lista de eventos com o novo evento
     const loadEvents = loadEventsFromLocal();
-
-     // Chama updateAside para atualizar o aside com os eventos da célula clicada
-     if (cell) {
+    
+    // Chama updateAside para atualizar o aside com os eventos da célula clicada
+    if (cell) {
         updateAside(cell, loadEvents);
     }
-
+    
     prepareAddEventButton(cell);
-     
+    
+    updateCalendarCells();
 }
 
 // Função para editar um evento existente
@@ -58,6 +58,7 @@ function deleteEvent(eventId, cell) {
 
     // Salva os eventos atualizados no localStorage
     saveEventsToLocal(events);
+
 
     updateCalendarCells();
 
