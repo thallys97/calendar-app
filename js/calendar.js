@@ -87,7 +87,14 @@ function updateAside(cell, eventsForDate) {
     filteredEvents.forEach(event => {
         const eventDiv = document.createElement('div');
         eventDiv.classList.add('event');
+    
+        const deleteButton = document.createElement('span');
+        deleteButton.classList.add('event-delete-button');
+        deleteButton.textContent = 'X';
+        deleteButton.onclick = () => deleteEvent(event.id, cell);
+    
         eventDiv.textContent = `${event.title} - ${event.startTime || 'Sem Horário Definido'}`;
+        eventDiv.appendChild(deleteButton);
         asideContent.appendChild(eventDiv);
     });
 
