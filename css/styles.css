@@ -98,6 +98,10 @@ header h1 {
     transition: background-color 0.3s; /* Adiciona uma transição suave para o background-color */
 }
 
+.calendar-cell:hover {
+    cursor: pointer;
+}
+
 .calendar-cell.flash {
     background-color: var(--event-color);
 }
@@ -109,6 +113,25 @@ header h1 {
     text-align: center;
     font-size: 1em;
 }
+
+
+.cell-event {
+    display: inline-block;
+    padding: 2px 5px;
+    margin-right: 4px;
+    border-radius: 2px;
+    font-size: 0.75em;
+    white-space: nowrap;
+}
+
+.cell-events-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: start;
+    margin-top: 4px;
+}
+
 
 /* Estilo para o dia atual */
 .current-day {
@@ -135,7 +158,7 @@ aside {
     /* Outros estilos que você já tenha */
 }
 
-.event-delete-button {
+/* .event-delete-button {
     color: red;
     cursor: pointer;
     margin-left: 10px;
@@ -143,8 +166,71 @@ aside {
 
 .event-delete-button:hover {
     color: darkred;
+} */
+
+
+.action-button {
+
+    margin-bottom: 20px;
+
 }
 
+.aside-events {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px; /* Espaço entre os eventos */
+}
+
+.event {
+    margin-bottom: 0;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    flex: 0 1 auto; /* Isso permite que o evento encolha se necessário, mas não cresça */
+    
+}
+
+
+.event-delete-button {
+    float: right;
+    cursor: pointer;
+    color: white;
+    margin-left: 10px;
+}
+
+.event-none {
+    background-color: grey;
+}
+
+.event-personal {
+    background-color: black;
+}
+
+.event-work {
+    background-color: red;
+}
+
+.event-family {
+    background-color: rgb(255, 123, 0);
+}
+
+.event-study {
+    background-color: purple;
+}
+
+.event-leisure {
+    background-color: green;
+}
+
+.event-info h4 {
+    margin: 0;
+}
+
+.event-info p {
+    margin: 5px 0;
+}
 
 
 /* Fundo do modal */
