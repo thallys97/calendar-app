@@ -79,24 +79,46 @@ function updateAside(cell, eventsForDate) {
     <h2>${dayOfWeek}, ${dayNumber} de ${monthName} de ${year}</h2> 
     
     <button id="add-event" class="action-button">Adicionar Evento</button> 
+
+    <div class="aside-events">
     
+    </div>
     
     `;
 
+    const asideEvents = document.querySelector('.aside-events');
+    
     // Adicionar eventos ao aside
     filteredEvents.forEach(event => {
         const eventDiv = document.createElement('div');
-        eventDiv.classList.add('event');
+        const eventTypeClass = `event-${event.eventType}`;
+        eventDiv.classList.add('event', eventTypeClass);
     
         const deleteButton = document.createElement('span');
         deleteButton.classList.add('event-delete-button');
         deleteButton.textContent = 'X';
         deleteButton.onclick = () => deleteEvent(event.id, cell);
     
-        eventDiv.textContent = `${event.title} - ${event.startTime || 'Sem Horário Definido'}`;
+        // Inicializa um array para os elementos HTML do evento
+        const eventInfoElements = [
+            `<h4>${event.title}</h4>`,
+            `<p>Tipo: ${event.eventType}</p>`
+        ];
+    
+        // Adiciona condicionalmente cada campo ao array
+        if (event.startTime) eventInfoElements.push(`<p>Início: ${event.startTime}</p>`);
+        if (event.endTime) eventInfoElements.push(`<p>Término: ${event.endTime}</p>`);
+        if (event.location) eventInfoElements.push(`<p>Local: ${event.location}</p>`);
+        if (event.description) eventInfoElements.push(`<p>${event.description}</p>`);
+    
+        // Junta todos os elementos do array em uma string HTML
+        eventDiv.innerHTML = `<div class="event-info">${eventInfoElements.join('')}</div>`;
         eventDiv.appendChild(deleteButton);
-        asideContent.appendChild(eventDiv);
+        asideEvents.appendChild(eventDiv);
     });
+    
+    
+
 
     updateReturnToCurrentMonthButton()
 
@@ -105,10 +127,37 @@ function updateAside(cell, eventsForDate) {
         currentMonth = new Date().getMonth();
         currentYear = new Date().getFullYear();
         generateCalendar(currentMonth, currentYear);
+        updateCalendarCells();
         updateReturnToCurrentMonthButton();
         handleCalendarCellClick();
     });
 
+}
+
+
+// Função para atualizar as células do calendário com eventos
+function updateCalendarCells() {
+    const cells = document.querySelectorAll('.calendar-cell');
+    cells.forEach(cell => {
+        const date = cell.getAttribute('data-date');
+        const eventsForDate = events.filter(event => event.date === date);
+
+        // Limpa o conteúdo da célula antes de adicionar eventos
+        const eventsContainer = document.createElement('div');
+        eventsContainer.classList.add('cell-events-container');
+        
+        eventsForDate.forEach(event => {
+            const eventElement = document.createElement('div');
+            eventElement.textContent = event.title;
+            eventElement.classList.add('cell-event', `event-${event.eventType}`);
+            eventsContainer.appendChild(eventElement);
+        });
+
+        // Se houver eventos, adiciona o container à célula
+        if (eventsForDate.length > 0) {
+            cell.appendChild(eventsContainer);
+        }
+    });
 }
 
 
@@ -236,6 +285,10 @@ function generateCalendar(month, year) {
 document.addEventListener('DOMContentLoaded', function () {
     generateCalendar(currentMonth, currentYear);
 
+    loadEventsFromLocal() // Carrega os eventos do localStorage
+
+    updateCalendarCells(); // Agora atualiza as células com os eventos carregados
+
     // Event listeners para os botões de navegação
     document.getElementById('prev-month').addEventListener('click', () => {
         if (currentMonth === 0) {
@@ -245,6 +298,7 @@ document.addEventListener('DOMContentLoaded', function () {
             currentMonth--;
         }
         generateCalendar(currentMonth, currentYear);
+        updateCalendarCells();
         updateReturnToCurrentMonthButton(); // Atualize o botão após a navegação
         handleCalendarCellClick();
     });
@@ -257,6 +311,7 @@ document.addEventListener('DOMContentLoaded', function () {
             currentMonth++;
         }
         generateCalendar(currentMonth, currentYear);
+        updateCalendarCells();
         updateReturnToCurrentMonthButton(); // Atualize o botão após a navegação
         handleCalendarCellClick();
     });
@@ -266,6 +321,7 @@ document.addEventListener('DOMContentLoaded', function () {
         currentMonth = new Date().getMonth();
         currentYear = new Date().getFullYear();
         generateCalendar(currentMonth, currentYear);
+        updateCalendarCells();
         updateReturnToCurrentMonthButton();
         handleCalendarCellClick();
     });
@@ -275,9 +331,3 @@ document.addEventListener('DOMContentLoaded', function () {
     hideEventModal();
 
 });
-
-
-
-
-
-
