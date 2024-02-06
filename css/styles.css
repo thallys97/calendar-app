@@ -135,6 +135,15 @@ aside {
     /* Outros estilos que você já tenha */
 }
 
+.event-delete-button {
+    color: red;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.event-delete-button:hover {
+    color: darkred;
+}
 
 
 
