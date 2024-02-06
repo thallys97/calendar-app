@@ -29,7 +29,18 @@ function addEvent(date, title, eventType, startTime, endTime, location, descript
      modal.style.display = "none";
      modalBackground.style.display = "none";
  
-    
+     // Encontra a célula correspondente à selectedDate
+    const cell = document.querySelector(`.calendar-cell[data-date="${date}"]`);
+
+    // Chama loadEventsFromLocal para atualizar a lista de eventos com o novo evento
+    const loadEvents = loadEventsFromLocal();
+
+     // Chama updateAside para atualizar o aside com os eventos da célula clicada
+     if (cell) {
+        updateAside(cell, loadEvents);
+    }
+
+    prepareAddEventButton(cell);
      
 }
 
