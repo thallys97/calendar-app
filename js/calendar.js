@@ -51,7 +51,7 @@ function flashCell(cell) {
 function updateAside(cell, eventsForDate) {
     const date = cell.getAttribute('data-date');
     const dayOfWeek = cell.getAttribute('data-day-of-week');
-    const dayNumber = cell.textContent;
+    const dayNumber = cell.getAttribute('data-day');
     const monthName = cell.getAttribute('data-month');
     const year = date.split('-')[0]; // Extrai o ano da data completa
     const asideContent = document.querySelector('aside');
@@ -138,14 +138,22 @@ function updateAside(cell, eventsForDate) {
 // Função para atualizar as células do calendário com eventos
 function updateCalendarCells() {
     const cells = document.querySelectorAll('.calendar-cell');
+
     cells.forEach(cell => {
+        // Seleciona um possível container de eventos existente e o remove
+        const existingContainer = cell.querySelector('.cell-events-container');
+        if (existingContainer) {
+            existingContainer.remove();
+        }
+
         const date = cell.getAttribute('data-date');
         const eventsForDate = events.filter(event => event.date === date);
 
-        // Limpa o conteúdo da célula antes de adicionar eventos
+        // Cria um novo container para os eventos
         const eventsContainer = document.createElement('div');
         eventsContainer.classList.add('cell-events-container');
-        
+
+        // Adiciona eventos ao container de eventos
         eventsForDate.forEach(event => {
             const eventElement = document.createElement('div');
             eventElement.textContent = event.title;
@@ -159,7 +167,6 @@ function updateCalendarCells() {
         }
     });
 }
-
 
 
 // Função para preparar o botão de adicionar evento
@@ -274,6 +281,7 @@ function generateCalendar(month, year) {
         dayCell.setAttribute('data-date', date.toISOString().split('T')[0]);
         dayCell.setAttribute('data-day-of-week', dayOfWeek); // Define o dia da semana
         dayCell.setAttribute('data-month', monthNames[month]); // Atribuir o nome do mês à célula
+        dayCell.setAttribute('data-day', day);
         dayCell.textContent = day;
         calendarContainer.appendChild(dayCell);
     }
