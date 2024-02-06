@@ -22,6 +22,8 @@ function addEvent(date, title, eventType, startTime, endTime, location, descript
     // Salva os eventos atualizados no localStorage
     saveEventsToLocal(events);
 
+    updateCalendarCells();
+
      // Fecha o modal
     const modal = document.getElementById('event-modal');
     const modalBackground = document.querySelector('.modal-background');   
@@ -56,6 +58,8 @@ function deleteEvent(eventId, cell) {
 
     // Salva os eventos atualizados no localStorage
     saveEventsToLocal(events);
+
+    updateCalendarCells();
 
     // Atualiza o aside para refletir a remoção do evento
     updateAside(cell, events);
