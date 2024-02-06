@@ -50,8 +50,17 @@ function editEvent(eventId, newDetails) {
 }
 
 // Função para excluir um evento
-function deleteEvent(eventId) {
-   
+function deleteEvent(eventId, cell) {
+    // Remove o evento com o id especificado
+    events = events.filter(event => event.id !== eventId);
+
+    // Salva os eventos atualizados no localStorage
+    saveEventsToLocal(events);
+
+    // Atualiza o aside para refletir a remoção do evento
+    updateAside(cell, events);
+
+    prepareAddEventButton(cell);
 }
 
 // Função para mostrar os eventos no calendário
