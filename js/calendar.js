@@ -201,6 +201,16 @@ function showEventModal() {
     } else {
         submitButton.textContent = 'Salvar Evento';
     }
+
+
+    const modalHeader = document.getElementById('event-modal').querySelector('.modal-header');
+    if (editingEventId) {
+        modalHeader.textContent = 'Editar Evento';
+    } else {
+        modalHeader.textContent = 'Adicionar Evento';
+    }
+
+
 }
 
 function hideEventModal() {
