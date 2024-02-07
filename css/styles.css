@@ -98,7 +98,7 @@ header h1 {
     transition: background-color 0.3s; /* Adiciona uma transição suave para o background-color */
 }
 
-.calendar-cell:hover {
+.calendar-cell:not(.previous-month):hover {
     cursor: pointer;
 }
 
