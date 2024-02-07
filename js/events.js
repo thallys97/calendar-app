@@ -167,11 +167,13 @@ document.getElementById('event-form').addEventListener('submit', function(event)
     const location = document.getElementById('event-location').value;
     const description = document.getElementById('event-description').value;
 
-    // Verifica se o horário de início é fornecido
-    if (!startTime) {
-        alert("Por favor, forneça um horário de início para o evento.");
-        return;
-    }
+    
+        // Adiciona validação para garantir que o endTime só é enviado se startTime também for
+        if (!startTime && endTime) {
+            alert("Por favor, forneça um horário de início antes de definir um horário de término.");
+            return;
+        }
+
 
     // Verifica se o horário de término é maior que o horário de início
     if (endTime && (endTime <= startTime)) {
