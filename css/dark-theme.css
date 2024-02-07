@@ -1,0 +1,38 @@
+/* Tema escuro */
+
+
+/* Estilos que mudam com o tema */
+body.dark-theme {
+
+    --primary-color: #1c1c1c;
+    --secondary-color: #363537;
+    --highlight-color: #083a5c;
+    --text-color: #FAFAFA;
+    --text-light: #FFFFFF;
+    --event-color: #d35400;
+    --cell-background: #141414;
+    --text-previous-month: #444040;
+
+
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+header.dark-theme {
+    background-color: var(--primary-color);
+}
+
+.calendar-cell.dark-theme {
+    background-color: var(---cell-background);
+    color: var(--text-color);
+}
+
+.calendar-header.dark-theme {
+    background-color: var(--primary-color);
+}
+
+
+
+
+
+/* ... e assim por diante para outros elementos ... */
