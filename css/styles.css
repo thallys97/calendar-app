@@ -349,3 +349,14 @@ aside {
         width: 100%;
     }
 }
+
+
+@media (max-width: 900px) {
+    .calendar-content {
+        flex-direction: column;
+    }
+
+    .calendar, aside {
+        width: 100%;
+    }
+}
