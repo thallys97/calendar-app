@@ -2,6 +2,11 @@
 let events = [];
 let selectedDate = null; // Esta variável será definida quando uma célula do calendário for clicada
 
+// Variável para rastrear o evento que está sendo editado
+let editingEventId = null;
+
+
+
 
 // Função para adicionar um evento
 function addEvent(date, title, eventType, startTime, endTime, location, description) {
@@ -47,9 +52,42 @@ function addEvent(date, title, eventType, startTime, endTime, location, descript
 }
 
 // Função para editar um evento existente
-function editEvent(eventId, newDetails) {
-    
+function editEventForm(eventId) {
+    // Pega o evento para editar
+    const eventToEdit = events.find(event => event.id === eventId);
+    if (!eventToEdit) return;
+
+    // Preenche o formulário com os dados do evento
+    document.getElementById('event-title').value = eventToEdit.title;
+    document.getElementById('event-type').value = eventToEdit.eventType;
+    document.getElementById('event-start-time').value = eventToEdit.startTime;
+    document.getElementById('event-end-time').value = eventToEdit.endTime;
+    document.getElementById('event-location').value = eventToEdit.location;
+    document.getElementById('event-description').value = eventToEdit.description;
+
+    // Atualiza o ID do evento que está sendo editado
+    editingEventId = eventId;
+
+    // Mostra o modal para edição
+    showEventModal();
 }
+
+
+function updateEvent(eventId, newDetails) {
+    const eventIndex = events.findIndex(event => event.id === eventId);
+    if (eventIndex === -1) return;
+
+    // Atualiza os detalhes do evento
+    events[eventIndex] = { ...events[eventIndex], ...newDetails };
+    // Salva os eventos atualizados no localStorage
+    saveEventsToLocal(events);
+    // Atualiza a interface do usuário
+    const cell = document.querySelector(`.calendar-cell[data-date="${events[eventIndex].date}"]`);
+    if (cell) {
+        updateAside(cell, events);
+    }
+}
+
 
 // Função para excluir um evento
 function deleteEvent(eventId, cell) {
@@ -113,14 +151,38 @@ document.getElementById('event-form').addEventListener('submit', function(event)
         return;
     }
 
-    // Se tudo estiver correto, adiciona o evento
-    addEvent(selectedDate, title, eventType, startTime, endTime, location, description);
+    if (editingEventId) {
+        // Atualiza o evento existente
+        updateEvent(editingEventId, {
+            title: title,
+            eventType: eventType,
+            startTime: startTime,
+            endTime: endTime,
+            location: location,
+            description: description
+        });
+
+        // Limpa o ID de edição para o próximo uso do formulário
+        editingEventId = null;
+    } else {
+        // Adiciona um novo evento
+        addEvent(selectedDate, title, eventType, startTime, endTime, location, description);
+    }
 
     // Reseta o formulário após a adição
     event.target.reset();
 
     // Atualiza a exibição de eventos
     updateCalendarCells();
+
+     // Fecha o modal
+     // Fecha o modal
+    const modal = document.getElementById('event-modal');
+    const modalBackground = document.querySelector('.modal-background');   
+    
+    modal.style.display = "none";
+    modalBackground.style.display = "none";
+
 });
 
 
