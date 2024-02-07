@@ -56,12 +56,13 @@ function updateAside(cell, eventsForDate) {
     const year = date.split('-')[0]; // Extrai o ano da data completa
     const asideContent = document.querySelector('aside');
 
+
     // Carregar eventos do localStorage
     loadEventsFromLocal(); // Isso irá atualizar a variável global 'events'
 
      // Filtrar eventos para a data clicada
     
-     const filteredEvents = eventsForDate.filter(event => event.date === date);
+    const filteredEvents = eventsForDate.filter(event => event.date === date);
 
     // Ordenar eventos (eventos sem startTime no topo)
     filteredEvents.sort((a, b) => {
@@ -98,6 +99,11 @@ function updateAside(cell, eventsForDate) {
         deleteButton.classList.add('event-delete-button');
         deleteButton.textContent = 'X';
         deleteButton.onclick = () => deleteEvent(event.id, cell);
+
+        const editButton = document.createElement('span');
+        editButton.innerHTML = '&#9998;'; // Exemplo usando um caractere de edição
+        editButton.classList.add('event-edit-button');
+        editButton.onclick = () => editEventForm(event.id);
     
         // Inicializa um array para os elementos HTML do evento
         const eventInfoElements = [
@@ -113,6 +119,7 @@ function updateAside(cell, eventsForDate) {
     
         // Junta todos os elementos do array em uma string HTML
         eventDiv.innerHTML = `<div class="event-info">${eventInfoElements.join('')}</div>`;
+        eventDiv.appendChild(editButton);
         eventDiv.appendChild(deleteButton);
         asideEvents.appendChild(eventDiv);
     });
@@ -187,6 +194,13 @@ function showEventModal() {
     const modalBackground = document.querySelector('.modal-background');
     modal.style.display = "block";
     modalBackground.style.display = "block";
+
+    const submitButton = document.getElementById('event-form').querySelector('.submit-button');
+    if (editingEventId) {
+        submitButton.textContent = 'Atualizar Evento';
+    } else {
+        submitButton.textContent = 'Salvar Evento';
+    }
 }
 
 function hideEventModal() {
