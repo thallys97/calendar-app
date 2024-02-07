@@ -216,3 +216,7 @@ document.getElementById('event-form').addEventListener('submit', function(event)
 
 // Chama loadEventsFromLocal quando a página carregar para mostrar os eventos armazenados
 window.onload = loadEventsFromLocal;
+
+
+// Certifique-se de que a função de limpeza seja chamada também quando o fundo do modal é clicado
+document.querySelector('.modal-background').addEventListener('click', clearEditingStateAndCloseModal);
