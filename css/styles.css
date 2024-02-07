@@ -6,6 +6,8 @@
     --text-color: #333; /* cor do texto padrão */
     --text-light: #fff; /* cor do texto claro */
     --event-color: #f1c40f; /* cor do evento */
+    --cell-background: #fff;
+    --text-previous-month: #ccc;
 }
 
 body {
@@ -91,7 +93,7 @@ header h1 {
 }
 
 .calendar-cell {
-    background-color: var(--text-light);
+    background-color: var(--cell-background);
     border: 1px solid #ddd;
     min-height: 100px;
     padding: 5px;
@@ -142,7 +144,7 @@ header h1 {
 
 /* Estilo para os dias do mês anterior */
 .previous-month {
-    color: #ccc; /* Cinza claro */
+    color: var(--text-previous-month); /* Cinza claro */
 }
 
 
