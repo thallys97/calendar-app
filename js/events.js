@@ -6,6 +6,12 @@ let selectedDate = null; // Esta variável será definida quando uma célula do 
 let editingEventId = null;
 
 
+// // Certifique-se de que a função de limpeza seja chamada também quando o fundo do modal é clicado
+// document.querySelector('.modal-background').addEventListener('click', clearEditingStateAndCloseModal);
+
+// // Para garantir que a função clearEditingStateAndCloseModal seja chamada ao clicar no botão de fechar no seu modal
+// document.getElementById('close-modal').addEventListener('click', clearEditingStateAndCloseModal);
+
 
 
 // Função para adicionar um evento
@@ -62,6 +68,10 @@ function clearEditingStateAndCloseModal() {
     
     modal.style.display = "none";
     modalBackground.style.display = "none";      // Fecha o modal
+
+     // Limpa o formulário
+     document.getElementById('event-form').reset();
+
 }
 
 
