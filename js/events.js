@@ -51,6 +51,20 @@ function addEvent(date, title, eventType, startTime, endTime, location, descript
     updateCalendarCells();
 }
 
+
+// Função que limpa o editingEventId e fecha o modal
+function clearEditingStateAndCloseModal() {
+    
+    editingEventId = null; // Limpa o estado de edição
+
+    const modal = document.getElementById('event-modal');
+    const modalBackground = document.querySelector('.modal-background');   
+    
+    modal.style.display = "none";
+    modalBackground.style.display = "none";      // Fecha o modal
+}
+
+
 // Função para editar um evento existente
 function editEventForm(eventId) {
     // Pega o evento para editar
@@ -70,6 +84,9 @@ function editEventForm(eventId) {
 
     // Mostra o modal para edição
     showEventModal();
+
+    document.getElementById('close-modal').onclick = clearEditingStateAndCloseModal;
+
 }
 
 
@@ -85,6 +102,7 @@ function updateEvent(eventId, newDetails) {
     const cell = document.querySelector(`.calendar-cell[data-date="${events[eventIndex].date}"]`);
     if (cell) {
         updateAside(cell, events);
+        prepareAddEventButton(cell);
     }
 }
 
