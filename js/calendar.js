@@ -77,7 +77,7 @@ function updateAside(cell, eventsForDate) {
 
     <button id="return-to-current-month" class="action-button" style="display: none;">Voltar para o mês atual</button>
     
-    <h2>${dayOfWeek}, ${dayNumber} de ${monthName} de ${year}</h2> 
+    <h2 class="aside-title">${dayOfWeek}, ${dayNumber} de ${monthName} de ${year}</h2> 
     
     <button id="add-event" class="action-button">Adicionar Evento</button> 
 
@@ -105,17 +105,25 @@ function updateAside(cell, eventsForDate) {
         editButton.classList.add('event-edit-button');
         editButton.onclick = () => editEventForm(event.id);
     
-        // Inicializa um array para os elementos HTML do evento
+        const eventTypeToLabel = {
+            none: 'nenhum',
+            personal: 'assunto pessoal',
+            work: 'trabalho',
+            family: 'família',
+            study: 'estudo',
+            leisure: 'lazer'
+        };
+        
         const eventInfoElements = [
             `<h4>${event.title}</h4>`,
-            `<p>Tipo: ${event.eventType}</p>`
+            `<p>Tipo: ${eventTypeToLabel[event.eventType] || event.eventType}</p>`
         ];
     
         // Adiciona condicionalmente cada campo ao array
         if (event.startTime) eventInfoElements.push(`<p>Início: ${event.startTime}</p>`);
         if (event.endTime) eventInfoElements.push(`<p>Término: ${event.endTime}</p>`);
         if (event.location) eventInfoElements.push(`<p>Local: ${event.location}</p>`);
-        if (event.description) eventInfoElements.push(`<p>${event.description}</p>`);
+        if (event.description) eventInfoElements.push(`<p>Descrição: ${event.description}</p>`);
     
         // Junta todos os elementos do array em uma string HTML
         eventDiv.innerHTML = `<div class="event-info">${eventInfoElements.join('')}</div>`;
