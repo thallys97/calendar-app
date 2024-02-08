@@ -36,7 +36,7 @@ Para usar o aplicativo, siga os seguintes passos:
 
 ## Vídeo
 
-Aqui está uma demonstração em vídeo das funcionalidades do aplicativo de calendário:
+Clique na imagem abaixo para ser redirecionado para o Youtube e ver uma demonstração em vídeo das funcionalidades do aplicativo de calendário:
 
 [![Demonstração do Aplicativo de Calendário](http://img.youtube.com/vi/cFZ4vjI_5uY/0.jpg)](http://www.youtube.com/watch?v=cFZ4vjI_5uY "Demonstração do Aplicativo de Calendário")
 
