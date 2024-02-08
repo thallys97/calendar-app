@@ -33,6 +33,13 @@ Para usar o aplicativo, siga os seguintes passos:
 - **Mudança de Tema:** O usuário pode alternar entre os temas claro e escuro.
 - **Persistência de Dados:** Os eventos são salvos localmente para evitar perda de dados ao recarregar a página.
 
+
+## Vídeo
+
+Aqui está uma demonstração em vídeo das funcionalidades do aplicativo de calendário:
+
+[![Demonstração do Aplicativo de Calendário](http://img.youtube.com/vi/cFZ4vjI_5uY/0.jpg)](http://www.youtube.com/watch?v=cFZ4vjI_5uY "Demonstração do Aplicativo de Calendário")
+
 ## Screenshots
 Aqui estão algumas capturas de tela do aplicativo de calendário:
 ![Modo Claro](https://i.imgur.com/QTtc1Xa.png)
