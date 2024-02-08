@@ -8,6 +8,7 @@
     --event-color: #f1c40f; /* cor do evento */
     --cell-background: #fff;
     --text-previous-month: #ccc;
+    --background-modal:  #fff;
 }
 
 body {
@@ -25,6 +26,19 @@ body {
     padding: 0 20px; /* Adiciona um espaçamento de 20px nas laterais */
     max-width: 1200px; /* Define uma largura máxima se desejar */
     margin: 0 auto; /* Centraliza o main se houver uma largura máxima definida */
+}
+
+
+.theme-toggle {
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 16px;
+    margin: 5px 0;
 }
 
 
@@ -120,7 +134,6 @@ header h1 {
 .cell-event {
     display: inline-block;
     padding: 2px 5px;
-    margin-right: 4px;
     border-radius: 2px;
     font-size: 0.75em;
     white-space: nowrap;
@@ -132,6 +145,8 @@ header h1 {
     align-items: center;
     justify-content: start;
     margin-top: 4px;
+    color:#fff;
+    gap: 4px;
 }
 
 
@@ -171,8 +186,19 @@ aside {
 } */
 
 
+.aside-title {
+    text-align: center;
+}
+
 .action-button {
 
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 16px;
     margin-bottom: 20px;
 
 }
@@ -254,7 +280,7 @@ aside {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #fff;
+    background-color:var(--background-modal);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     z-index: 2; /* Coloca o modal acima de outros elementos */
     width: 400px; /* Largura fixa, ajuste conforme necessário */
@@ -273,6 +299,12 @@ aside {
     justify-content: space-between;
     align-items: center;
 }
+
+.label-modal {
+    display: block;
+    margin-top: 8px;
+}
+
 
 .close-button {
     background: none;
