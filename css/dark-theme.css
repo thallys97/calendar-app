@@ -12,6 +12,7 @@ body.dark-theme {
     --event-color: #d35400;
     --cell-background: #141414;
     --text-previous-month: #444040;
+    --background-modal:  #363537;
 
 
     background-color: var(--secondary-color);
