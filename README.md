@@ -35,9 +35,9 @@ Para usar o aplicativo, siga os seguintes passos:
 
 ## Screenshots
 Aqui estão algumas capturas de tela do aplicativo de calendário:
-![Modo Escuro](/caminho-para-screenshot-modo-escuro.png)
-![Modo Claro](/caminho-para-screenshot-modo-claro.png)
-![Adicionar Evento](/caminho-para-screenshot-adicionar-evento.png)
+![Modo Claro](https://imgur.com/QTtc1Xa)
+![Adicionar Evento](https://imgur.com/tlUZsOj)
+![Modo Escuro](https://imgur.com/ioVbjT2)
 
 ## Contribuições
 Contribuições são sempre bem-vindas! Se você tem alguma sugestão para melhorar o aplicativo, sinta-se à vontade para criar um pull request ou abrir uma issue.
