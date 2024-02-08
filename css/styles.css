@@ -343,16 +343,6 @@ aside {
 
 
 
-
-/* Botão de fechar e enviar no modal */
-#close-modal {
-    /* Estilos para o botão de fechar */
-}
-
-#event-form .submit-button {
-    /* Estilos para o botão de enviar */
-}
-
 .submit-button {
     background-color: var(--primary-color);
     color: var(--text-light);
